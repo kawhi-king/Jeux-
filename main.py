@@ -11,26 +11,29 @@ def main():
     
     #Choose a random word
     #new feature 1: choose the difficulty level
-    print ("Bienvenue dans le jeux de Teddy M'FOUO")
-    print ( "Le but du jeu est de deviner un mot en un nombre limité de Tentatives")
-    print ("Vous devez deviner le mot en proposant des lettres")
-    print ("Si la lettre est dans le mot, elle sera affichée")
+    print("Bienvenue dans le jeu de devinette !")
+    print("Je vais choisir un mot au hasard et vous devez le deviner.")
+    
+        
     
     print ("Choisissez le niveau de difficulté :")
     print("1. Facile - Tentatives = 10")
     print("2. Moyen - Tentatives = 10")
     print("3. Difficile - Tentatives = 10")
     print ("Prêt à relever le defi ? lancer le jeu et amusez-vous bien !")
-    # Choice of difficulty 
-    while True:
-        difficulty = input("\nTapez 1, 2 ou 3 : ")
-        if difficulty in ['1', '2', '3']:
-            break 
-        print("Veuillez choisir 1, 2 ou 3")
+    # Choice of difficulty level
+    def get_difficulty():
+        while True:
+            difficulty = input("Entrez le niveau de difficulté  (1, 2 ou 3) : ")
+            if difficulty in ['1', '2', '3']:
+                return difficulty
+            else:
+                print("Veuillez entrer un nombre valide 1, 2 ou 3.")
         #if the user types 1, 2 or 3: it activates the
         
         
     #new feature 2: word choice
+    difficulty = get_difficulty()
     if  difficulty == "1": 
         mot_a_deviner = random.choice(easy_words)
         Tentatives = 10
@@ -74,10 +77,10 @@ def main():
                 print("Dommage ! essaie encore")
             else:
                 print ("Bien joué !")
-                # Display updated
-                for i in range(len(mot_a_deviner)):
-                    if lettre == mot_a_deviner[i]:
-                        affichage[i] = lettre  # Valid because display has the same size as word_to_guess 
+            # Display updated
+            for i in range(len(mot_a_deviner)):
+                if lettre == mot_a_deviner[i]:
+                    affichage[i] = lettre  # Valid because display has the same size as word_to_guess 
                 # Adding the letter to the list of found letters
                 lettres_trouvees.append(lettre)
 
@@ -93,23 +96,14 @@ def main():
     else:
         print("👎Vous avez perdu, le mot était :",(mot_a_deviner) )
         print("Merci d'avoir joué")
-      
-            #check if user wants to replay or quit 
-               
-    while True:
-        rejouer = input("voulez-vous rejouer ? (O/N) :")
-        break
-        print("Veuillez choisir o ou n")
-        if  rejouer in ['o', 'n']:
-            break
-        if rejouer == "o":
-            print("Ok")
-            main()
-        else:
-            print("Merci d'avoir joué")    
-            quit()
-        #End of main loop
-        
+        #check if user wants to replay or quit the game
+         
+    replay = input("Voulez-vous rejouer ? (o/n) :").lower()
+    if replay == 'o':
+        main()
+        #Restart the game
+    elif replay == 'n':
+        print("Merci d'avoir joué ! À la prochaine fois !")
         
 if __name__ == '__main__':
     main()
