@@ -1,67 +1,54 @@
-# Description: Jeu de devinette
-
+# Description: Jeu de devinette de mots
 import random 
 
+average_notes = 0
+notes = []
 
 def main():
     #List of words to guess
-    easy_words = ["python","soleil","facile", "poulet","maison"]
-    average_words = ["variable","boucle","fonction", "tableau", "classe","methode"]
-    difficult_words = ["encapsulation", "heritage", "Xavier", "abstraction", "interface"]
+    def get_words():
+        easy_words = ["banane", "pomme", "orange", "kiwi", "cerise"] #easy
+        average_words = ["ananas", "fraise", "mangue", "raisin", "melon"] #average
+        difficult_words = ["papaye", "framboise", "cassis", "groseille", "kiwano"] #difficult
+        return easy_words, average_words, difficult_words # List of words to guess
     
-    #Choose a random word
-    #new feature 1: choose the difficulty level
-    print("Bienvenue dans le jeu de devinette !")
+    easy_words, average_words, difficult_words = get_words() 
+    
+    def calculer_score(tentatives_restantes, niveau, mot):
+        multiplicateurs = {'1': 1, '2': 1.5, '3': 2}
+        return int(tentatives_restantes * len(mot) * multiplicateurs[niveau])
+    
     print("Je vais choisir un mot au hasard et vous devez le deviner.")
-        
-    
     print ("Choisissez le niveau de difficulté :")
     print("1. Facile - Tentatives = 10")
     print("2. Moyen - Tentatives = 10")
     print("3. Difficile - Tentatives = 10")
     print ("Prêt à relever le defi ? lancer le jeu et amusez-vous bien !")
-    # Choice of difficulty level
     def get_difficulty():
         while True:
             difficulty = input("Entrez le niveau de difficulté  (1, 2 ou 3) : ")
             if difficulty in ['1', '2', '3']:
                 return difficulty
             else:
-                print("Veuillez entrer un nombre valide 1, 2 ou 3.")
-        #if the user types 1, 2 or 3: it activates the
-        
-        
-    #new feature 2: word choice
+                print("Veuillez entrer un nombre valide 1, 2 ou 3.") 
     difficulty = get_difficulty()
     if  difficulty == "1": 
         mot_a_deviner = random.choice(easy_words)
         Tentatives = 10
-       #if the user types 1: it activates easy_words
     elif difficulty == "2":
         mot_a_deviner = random.choice(average_words)
         Tentatives = 10
-        #if the user types 2: it activates middle_words
     elif difficulty == "3": 
         mot_a_deviner = random.choice(difficult_words)
         Tentatives = 10
-        
-       #if the user types 3: it activates difficult_words
-        
-        
-     # Ensure the word is lowercase
-    lettres_trouvees = []
-    affichage = ["_" for lettre in mot_a_deviner]
-    
-    # Select a random word
-
-    print(f"Le mot à deviner contient {len(mot_a_deviner)} lettres \n")  # Example: "banana", "apple", "laptop"
-    
-    # Main loop            
+    lettres_trouvees = []# List to store found letters
+    affichage = ["_" for lettre in mot_a_deviner] # Display the word with underscores
+    print(f"Le mot à deviner contient {len(mot_a_deviner)} lettres \n")  # Example: "banana", "apple"
+    def get_word():
+        return random.choice(easy_words + average_words + difficult_words)          
     while Tentatives > 0 and '_' in affichage :
-        print (f"Il vous reste {Tentatives} tentatives")
-        # Word display
-        print(' '.join(affichage))
-        # Letter verification
+        print (f"Il vous reste {Tentatives} tentatives")# Word display
+        print(' '.join(affichage)) # Display the word with underscores
         if Tentatives == 0:
             print("Merci d'avoir joué")
         lettre = input("Entrez une lettre : \n ").lower()
@@ -77,25 +64,31 @@ def main():
                 print("Dommage ! essaie encore")
             else:
                 print ("Bien joué !")
-            # Display updated
             for i in range(len(mot_a_deviner)):
                 if lettre == mot_a_deviner[i]:
                     affichage[i] = lettre  # Valid because display has the same size as word_to_guess 
-                # Adding the letter to the list of found letters
                 lettres_trouvees.append(lettre)
-
            # Display current state
-            print(' '.join(affichage))
+            print(' '.join(affichage))# Display the word with underscores
             print("\n")
             Tentatives -= 1
-        
-    # Displays the result of the game
-    if '_' not in  affichage:
-        print("👏Félicitations, vous avez trouvé le mot :",(mot_a_deviner))
+        if '_' not in  affichage:
+            print("👏Félicitations, vous avez trouvé le mot :",(mot_a_deviner)) # Displays the result of the game
     else:
-        print("👎Vous avez perdu, le mot était :",(mot_a_deviner) )
-        #check if user wants to replay or quit the game
-        
+        print("👎Vous avez perdu, le mot était :",(mot_a_deviner) ) 
+        def note_games(): # Function to rate the game
+            while True:
+                note = input("veuillez noter le jeu de (1-5):")
+                if note in ['1', '2', '3', '4', '5']:
+                    print("Merci pour votre note !")
+                    notes.append(note) # Add the note to the list
+                    # Calculate the average of the notes
+                    average_notes = sum([int(note) for notes in note]) / len(notes)
+                    print(f"Votre note moyenne est : {average_notes}")
+                    break
+                else: 
+                    print("Veuillez entrer une note valide entre 1 et 5.")
+        note_games()
     while True:
         replay = input("Voulez-vous rejouer ? (O/N) : ").lower()
         if replay == 'o'or replay == 'O':
@@ -104,8 +97,6 @@ def main():
             print("Merci d'avoir joué ! À la prochaine fois !")
             break
         else:
-            print("Veuillez entrer 'O' pour rejoeur ou 'N' pour quitter.")
-            # end of the game 
+            print("Veuillez entrer 'O' pour rejouer ou 'N' pour quitter.") 
 if __name__ == '__main__':
     main()
-#End of the program
