@@ -13,7 +13,6 @@ def main():
     #new feature 1: choose the difficulty level
     print("Bienvenue dans le jeu de devinette !")
     print("Je vais choisir un mot au hasard et vous devez le deviner.")
-    
         
     
     print ("Choisissez le niveau de difficulté :")
@@ -45,6 +44,7 @@ def main():
     elif difficulty == "3": 
         mot_a_deviner = random.choice(difficult_words)
         Tentatives = 10
+        
        #if the user types 3: it activates difficult_words
         
         
@@ -91,20 +91,21 @@ def main():
         
     # Displays the result of the game
     if '_' not in  affichage:
-        print("👏Félicitations, vous avez trouvé le mot :",(mot_a_deviner) )
-        print("Merci d'avoir joué") 
+        print("👏Félicitations, vous avez trouvé le mot :",(mot_a_deviner))
     else:
         print("👎Vous avez perdu, le mot était :",(mot_a_deviner) )
-        print("Merci d'avoir joué")
         #check if user wants to replay or quit the game
-         
-    replay = input("Voulez-vous rejouer ? (o/n) :").lower()
-    if replay == 'o':
-        main()
-        #Restart the game
-    elif replay == 'n':
-        print("Merci d'avoir joué ! À la prochaine fois !")
         
+    while True:
+        replay = input("Voulez-vous rejouer ? (O/N) : ").lower()
+        if replay == 'o':
+            main()  #Restart the game
+        elif replay == 'n':
+            print("Merci d'avoir joué ! À la prochaine fois !")
+            break
+        else:
+            print("Veuillez entrer 'O' pour oui ou 'N' pour non.")
+            
 if __name__ == '__main__':
     main()
 #End of the program
