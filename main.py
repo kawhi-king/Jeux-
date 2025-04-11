@@ -105,7 +105,7 @@ def main():
             break
         else:
             print("Veuillez entrer 'O' pour rejoeur ou 'N' pour quitter.")
-            
+            # end of the game 
 if __name__ == '__main__':
     main()
 #End of the program
