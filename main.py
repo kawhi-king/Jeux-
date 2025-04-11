@@ -104,7 +104,7 @@ def main():
             print("Merci d'avoir joué ! À la prochaine fois !")
             break
         else:
-            print("Veuillez entrer 'O' pour oui ou 'N' pour non.")
+            print("Veuillez entrer 'O' pour rejoeur ou 'N' pour quitter.")
             
 if __name__ == '__main__':
     main()
