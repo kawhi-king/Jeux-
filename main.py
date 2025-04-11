@@ -98,9 +98,9 @@ def main():
         
     while True:
         replay = input("Voulez-vous rejouer ? (O/N) : ").lower()
-        if replay == 'o':
+        if replay == 'o'or replay == 'O':
             main()  #Restart the game
-        elif replay == 'n':
+        elif replay == 'n' or replay == 'N':
             print("Merci d'avoir joué ! À la prochaine fois !")
             break
         else:
