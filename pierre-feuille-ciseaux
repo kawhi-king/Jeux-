@@ -1,0 +1,33 @@
+import random
+from main import main
+
+class Jeu:
+    def jouer(self) :
+        option = [ "p", "f", "c"]
+        ordinateur = random.choice(option)
+        joueur = input("Choisissez entre pierre (p), feuille (f) ou ciseaux (c): ").lower()
+    
+        if joueur not in option:
+            print("Choix invalide. Veuillez choisir entre p, f ou c.")
+            return self.jouer()
+        
+        print(f"Ordinateur a choisi: {ordinateur}")
+        if joueur == ordinateur:
+            print("Match nul!")
+        elif (joueur == "p" and ordinateur == "c") or (joueur == "f" and ordinateur == "p") or (joueur == "c" and ordinateur == "f"):
+            print("Vous avez gagné!")
+        else:
+            print("Ordinateur a gagné!")
+        
+        while True:
+            replay = input("Voulez-vous rejouer? (o/n): ").lower()
+            if replay == "o":
+                return self.jouer()
+            elif replay == "n":
+                print("Merci d'avoir joué!")
+                break
+            else:
+                print("Choix invalide. Veuillez choisir entre o ou n.")
+if __name__ == "__main__":
+    jeu = Jeu()
+    jeu.jouer()
