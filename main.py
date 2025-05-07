@@ -1,6 +1,7 @@
 # Description: Jeu de devinette de mots
 import random 
 
+
 average_notes = 0
 notes = []
 
@@ -91,7 +92,7 @@ class main():
     while True:
         replay = input("Voulez-vous rejouer ? (O/N) : ").lower()
         if replay == 'o'or replay == 'O':
-            main()  #Restart the game
+            min()  #Restart the game
         elif replay == 'n' or replay == 'N':
             print("Merci d'avoir joué ! À la prochaine fois !")
             break
