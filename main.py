@@ -4,14 +4,13 @@ import random
 average_notes = 0
 notes = []
 
-def main():
+class main():
     #List of words to guess
     def get_words():
         easy_words = ["banane", "pomme", "orange", "kiwi", "cerise"] #easy
         average_words = ["ananas", "fraise", "mangue", "raisin", "melon"] #average
         difficult_words = ["papaye", "framboise", "cassis", "groseille", "kiwano"] #difficult
         return easy_words, average_words, difficult_words # List of words to guess
-    
     easy_words, average_words, difficult_words = get_words() 
     
     def calculer_score(tentatives_restantes, niveau, mot):
